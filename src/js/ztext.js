@@ -1,5 +1,5 @@
 /*!
- * ztext.js v0.0.1
+ * ztext.js v0.0.2
  * https://bennettfeely.com/ztext
  * Licensed MIT | (c) 2020 Bennett Feely
  */
@@ -207,55 +207,49 @@ if (
 			if (event == "scroll") {
 				function zScroll() {
 					var bounds = z.getBoundingClientRect();
-
 					var center_x = bounds.left + bounds.width / 2 - window.innerWidth / 2;
 					var center_y =
 						bounds.top + bounds.height / 2 - window.innerHeight / 2;
-
 					var x_pct = (center_x / window.innerWidth) * -2;
 					var y_pct = (center_y / window.innerHeight) * -2;
 
 					tilt(x_pct, y_pct);
 				}
 
-				scroll();
+				zScroll();
 				window.addEventListener("scroll", zScroll, false);
 			}
 
 			if (event == "scrollY") {
 				function zScrollY() {
 					var bounds = z.getBoundingClientRect();
-
 					var center_y =
 						bounds.top + bounds.height / 2 - window.innerHeight / 2;
-
 					var y_pct = (center_y / window.innerHeight) * -2;
 
 					tilt(0, y_pct);
 				}
 
-				scrollY();
+				zScrollY();
 				window.addEventListener("scroll", zScrollY, false);
 			}
 
 			if (event == "scrollX") {
 				function zScrollX() {
 					var bounds = z.getBoundingClientRect();
-
 					var center_x = bounds.left + bounds.width / 2 - window.innerWidth / 2;
-
 					var x_pct = (center_x / window.innerWidth) * -2;
 
 					tilt(x_pct, 0);
 				}
 
-				scrollX();
+				zScrollX();
 				window.addEventListener("scroll", zScrollX, false);
 			}
 		}
 	}
 } else {
 	console.error(
-		"ztext is disabled because CSS transform-style: preserve3d; is unsupported."
+		"ztext is disabled because transform-style: preserve3d; is unsupported"
 	);
 }
