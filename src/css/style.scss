@@ -224,6 +224,7 @@ ol {
 	color: $black;
 	overflow: hidden;
 	transition: box-shadow $transition, border-color $transition;
+	user-select: none;
 
 	strong {
 		font-size: 1.25em;
@@ -273,7 +274,12 @@ pre {
 	}
 
 	code {
+		font: 80%/1.4 Monaco, monospace;
 		padding: 0;
+
+		@media (min-width: $tablet) {
+			font-size: 90%;
+		}
 	}
 
 	.pre-subdivision {
@@ -423,7 +429,6 @@ code {
 		sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 	border: 1px solid rgba($white-code-dark, 0.75);
 	border-radius: $radius;
-	margin: 0 0 1em;
 	overflow: hidden;
 	max-width: 30em;
 }
