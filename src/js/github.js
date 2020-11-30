@@ -1,5 +1,5 @@
-const right_bow = new Date();
-const times = [
+let right_now = new Date();
+let times = [
 	["second", 1],
 	["minute", 60],
 	["hour", 3600],
@@ -12,7 +12,7 @@ const times = [
 function formatTime(date) {
 	var date = new Date(date);
 
-	var diff = Math.round((right_bow - date) / 1000);
+	var diff = Math.round((right_now - date) / 1000);
 	for (var t = 0; t < times.length; t++) {
 		if (diff < times[t][1]) {
 			if (t == 0) {
@@ -26,13 +26,12 @@ function formatTime(date) {
 }
 
 function makeCard(repo) {
-	const xhr = new XMLHttpRequest();
-	const url = "https://api.github.com/repos/" + repo;
+	let xhr = new XMLHttpRequest();
+	let url = "https://api.github.com/repos/" + repo;
 
 	xhr.open("GET", url, true);
-
 	xhr.onload = function () {
-		const respo = JSON.parse(this.response);
+		let respo = JSON.parse(this.response);
 
 		let card = `<div class="repo-box">
 	<div class="repo-title">
