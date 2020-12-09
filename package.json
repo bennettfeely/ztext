@@ -1,0 +1,19 @@
+{
+  "name": "ztext",
+  "version": "1.0.1",
+  "description": "Easy to implement, 3D typography for the web. Works with every font.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bennettfeely/ztext.git"
+  },
+  "author": "Bennett Feely",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bennettfeely/ztext/issues"
+  },
+  "homepage": "https://bennettfeely.com/ztext"
+}
