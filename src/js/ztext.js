@@ -250,6 +250,6 @@ if (
 	}
 } else {
 	console.error(
-		"ztext is disabled because transform-style: preserve3d; is unsupported"
+		"ztext is disabled because transform-style: preserve-3d; is unsupported"
 	);
 }
