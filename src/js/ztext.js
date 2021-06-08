@@ -131,10 +131,12 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
 
   function tilt(x_pct, y_pct) {
     // Switch neg/pos values if eventDirection is reversed
+		let event_direction_adj;
+
     if (eventDirection == 'reverse') {
-      var event_direction_adj = -1;
+      event_direction_adj = -1;
     } else {
-      var event_direction_adj = 1;
+      event_direction_adj = 1;
     }
 
     // Multiply pct rotation by eventRotation and eventDirection
