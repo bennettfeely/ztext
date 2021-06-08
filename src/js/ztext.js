@@ -36,7 +36,7 @@ const setElementsOptions = (elements, options) => {
 
 // JS constructor
 function Ztextify(selector, options) {
-  var zs = document.querySelectorAll(selector);
+  const zs = document.querySelectorAll(selector);
 
   zs.forEach((z) => {
     zDraw(z, options);
@@ -44,27 +44,27 @@ function Ztextify(selector, options) {
 }
 
 function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade, layers, perspective }) {
-  var depth_unit = depth.match(/[a-z]+/)[0];
-  var depth_numeral = parseFloat(depth.replace(depth_unit, ''));
-  var event_rotation_unit = eventRotation.match(/[a-z]+/)[0];
-  var event_rotation_numeral = parseFloat(eventRotation.replace(event_rotation_unit, ''));
+  const depth_unit = depth.match(/[a-z]+/)[0];
+  const depth_numeral = parseFloat(depth.replace(depth_unit, ''));
+  const event_rotation_unit = eventRotation.match(/[a-z]+/)[0];
+  const event_rotation_numeral = parseFloat(eventRotation.replace(event_rotation_unit, ''));
 
   // Grab the text and replace it with a new structure
-  var text = z.innerHTML;
+  const text = z.innerHTML;
   z.innerHTML = '';
   z.style.display = 'inline-block';
   z.style.position = 'relative';
   z.style.perspective = perspective;
 
   // Create a wrapper span that will hold all the layers
-  var zText = document.createElement('span');
+  const zText = document.createElement('span');
   zText.setAttribute('class', 'z-text');
   zText.style.display = 'inline-block';
   zText.style.transformStyle = 'preserve-3d';
 
   // Create a layer for transforms from JS to be applied
   // CSS is stupid that transforms cannot be applied individually
-  var zLayers = document.createElement('span');
+  const zLayers = document.createElement('span');
   zLayers.setAttribute('class', 'z-layers');
   zLayers.style.display = 'inline-block';
   zLayers.style.transformStyle = 'preserve-3d';
@@ -75,7 +75,7 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
     let pct = i / layers;
 
     // Create a layer
-    var zLayer = document.createElement('span');
+    const zLayer = document.createElement('span');
     zLayer.setAttribute('class', 'z-layer');
     zLayer.innerHTML = text;
     zLayer.style.display = 'inline-block';
@@ -95,7 +95,7 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
 				break;
 		}
 
-    var transform = 'translateZ(' + zTranslation + depth_unit + ')';
+    const transform = 'translateZ(' + zTranslation + depth_unit + ')';
     zLayer.style.transform = transform;
     // zLayer.style.transform = depth + 'em';
 
@@ -140,18 +140,18 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
     }
 
     // Multiply pct rotation by eventRotation and eventDirection
-    var x_tilt = x_pct * event_rotation_numeral * event_direction_adj;
-    var y_tilt = -y_pct * event_rotation_numeral * event_direction_adj;
+    const x_tilt = x_pct * event_rotation_numeral * event_direction_adj;
+    const y_tilt = -y_pct * event_rotation_numeral * event_direction_adj;
 
     // Keep values in bounds [-1, 1]
-    var x_clamped = Math.min(Math.max(x_tilt, -1), 1);
-    var y_clamped = Math.min(Math.max(y_tilt, -1), 1);
+    const x_clamped = Math.min(Math.max(x_tilt, -1), 1);
+    const y_clamped = Math.min(Math.max(y_tilt, -1), 1);
 
     // Add unit to transform value
-    var unit = event_rotation_unit;
+    const unit = event_rotation_unit;
 
     // Rotate .z-layers as a function of x and y coordinates
-    var transform = 'rotateX(' + y_tilt + unit + ') rotateY(' + x_tilt + unit + ')';
+    const transform = 'rotateX(' + y_tilt + unit + ') rotateY(' + x_tilt + unit + ')';
     zLayers.style.transform = transform;
   }
 
@@ -160,8 +160,8 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
     window.addEventListener(
       'mousemove',
       (e) => {
-        var x_pct = (e.clientX / window.innerWidth - 0.5) * 2;
-        var y_pct = (e.clientY / window.innerHeight - 0.5) * 2;
+        const x_pct = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y_pct = (e.clientY / window.innerHeight - 0.5) * 2;
 
         tilt(x_pct, y_pct);
       },
@@ -171,8 +171,8 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
     window.addEventListener(
       'touchmove',
       (e) => {
-        var x_pct = (e.touches[0].clientX / window.innerWidth - 0.5) * 2;
-        var y_pct = (e.touches[0].clientY / window.innerHeight - 0.5) * 2;
+        const x_pct = (e.touches[0].clientX / window.innerWidth - 0.5) * 2;
+        const y_pct = (e.touches[0].clientY / window.innerHeight - 0.5) * 2;
 
         tilt(x_pct, y_pct);
       },
@@ -183,11 +183,11 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
   // Capture scroll event and rotate .z-layers
   if (event == 'scroll') {
     function zScroll() {
-      var bounds = z.getBoundingClientRect();
-      var center_x = bounds.left + bounds.width / 2 - window.innerWidth / 2;
-      var center_y = bounds.top + bounds.height / 2 - window.innerHeight / 2;
-      var x_pct = (center_x / window.innerWidth) * -2;
-      var y_pct = (center_y / window.innerHeight) * -2;
+      const bounds = z.getBoundingClientRect();
+      const center_x = bounds.left + bounds.width / 2 - window.innerWidth / 2;
+      const center_y = bounds.top + bounds.height / 2 - window.innerHeight / 2;
+      const x_pct = (center_x / window.innerWidth) * -2;
+      const y_pct = (center_y / window.innerHeight) * -2;
 
       tilt(x_pct, y_pct);
     }
@@ -198,9 +198,9 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
 
   if (event == 'scrollY') {
     function zScrollY() {
-      var bounds = z.getBoundingClientRect();
-      var center_y = bounds.top + bounds.height / 2 - window.innerHeight / 2;
-      var y_pct = (center_y / window.innerHeight) * -2;
+      const bounds = z.getBoundingClientRect();
+      const center_y = bounds.top + bounds.height / 2 - window.innerHeight / 2;
+      const y_pct = (center_y / window.innerHeight) * -2;
 
       tilt(0, y_pct);
     }
@@ -211,9 +211,9 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
 
   if (event == 'scrollX') {
     function zScrollX() {
-      var bounds = z.getBoundingClientRect();
-      var center_x = bounds.left + bounds.width / 2 - window.innerWidth / 2;
-      var x_pct = (center_x / window.innerWidth) * -2;
+      const bounds = z.getBoundingClientRect();
+      const center_x = bounds.left + bounds.width / 2 - window.innerWidth / 2;
+      const x_pct = (center_x / window.innerWidth) * -2;
 
       tilt(x_pct, 0);
     }
