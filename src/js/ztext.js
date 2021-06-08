@@ -143,10 +143,6 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
     const x_tilt = x_pct * event_rotation_numeral * event_direction_adj;
     const y_tilt = -y_pct * event_rotation_numeral * event_direction_adj;
 
-    // Keep values in bounds [-1, 1]
-    const x_clamped = Math.min(Math.max(x_tilt, -1), 1);
-    const y_clamped = Math.min(Math.max(y_tilt, -1), 1);
-
     // Add unit to transform value
     const unit = event_rotation_unit;
 
