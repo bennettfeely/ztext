@@ -73,14 +73,12 @@ function zDraw(z, options) {
 		z.innerHTML = "";
 		z.style.display = "inline-block";
 		z.style.position = "relative";
-		z.style.webkitPerspective = perspective;
 		z.style.perspective = perspective;
 
 		// Create a wrapper span that will hold all the layers
 		var zText = document.createElement("span");
 		zText.setAttribute("class", "z-text");
 		zText.style.display = "inline-block";
-		zText.style.webkitTransformStyle = "preserve-3d";
 		zText.style.transformStyle = "preserve-3d";
 
 		// Create a layer for transforms from JS to be applied
@@ -88,7 +86,6 @@ function zDraw(z, options) {
 		var zLayers = document.createElement("span");
 		zLayers.setAttribute("class", "z-layers");
 		zLayers.style.display = "inline-block";
-		zLayers.style.webkitTransformStyle = "preserve-3d";
 		zLayers.style.transformStyle = "preserve-3d";
 
 		zText.append(zLayers);
@@ -114,7 +111,6 @@ function zDraw(z, options) {
 			}
 
 			var transform = "translateZ(" + zTranslation + depth_unit + ")";
-			zLayer.style.webkitTransform = transform;
 			zLayer.style.transform = transform;
 
 			// Manipulate duplicate layers
@@ -169,7 +165,6 @@ function zDraw(z, options) {
 			// Rotate .z-layers as a function of x and y coordinates
 			var transform =
 				"rotateX(" + y_tilt + unit + ") rotateY(" + x_tilt + unit + ")";
-			zLayers.style.webkitTransform = transform;
 			zLayers.style.transform = transform;
 		}
 
