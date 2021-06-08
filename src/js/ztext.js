@@ -200,6 +200,15 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
 	}
 }
 
+// JS constructor
+function Ztextify(selector, options) {
+	var zs = document.querySelectorAll(selector);
+
+	zs.forEach((z) => {
+		zDraw(z, options);
+	});
+}
+
 // Get all elements with the [data-z] attribute
 var zs = document.querySelectorAll("[data-z]");
 zs.forEach((z) => {
@@ -219,14 +228,7 @@ zs.forEach((z) => {
 	zDraw(z, options);
 });
 
-// JS constructor
-function Ztextify(selector, options) {
-	var zs = document.querySelectorAll(selector);
 
-	zs.forEach((z) => {
-		zDraw(z, options);
-	});
-}
 
 
 
