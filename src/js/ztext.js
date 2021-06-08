@@ -43,7 +43,7 @@ function Ztextify(selector, options) {
   });
 }
 
-function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade, layers, perspective, transform }) {
+function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade, layers, perspective }) {
   var depth_unit = depth.match(/[a-z]+/)[0];
   var depth_numeral = parseFloat(depth.replace(depth_unit, ''));
   var event_rotation_unit = eventRotation.match(/[a-z]+/)[0];
