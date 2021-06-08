@@ -81,18 +81,23 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
     zLayer.style.display = 'inline-block';
 
     // Shift the layer on the z axis
-    if (direction === 'backwards') {
-      var zTranslation = -pct * depth_numeral;
-    }
-    if (direction === 'both') {
-      var zTranslation = -(pct * depth_numeral) + depth_numeral / 2;
-    }
-    if (direction === 'forwards') {
-      var zTranslation = -(pct * depth_numeral) + depth_numeral;
-    }
+		let zTranslation;
+
+		switch(direction) {
+			case 'backwards':
+				zTranslation = -pct * depth_numeral;
+				break;
+			case 'forwards':
+				zTranslation = -(pct * depth_numeral) + depth_numeral;
+				break;
+			default:
+				zTranslation = -(pct * depth_numeral) + depth_numeral / 2;
+				break;
+		}
 
     var transform = 'translateZ(' + zTranslation + depth_unit + ')';
     zLayer.style.transform = transform;
+    // zLayer.style.transform = depth + 'em';
 
     // Manipulate duplicate layers
     if (i >= 1) {
