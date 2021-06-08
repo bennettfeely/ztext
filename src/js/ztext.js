@@ -3,9 +3,9 @@
  * https://bennettfeely.com/ztext
  * Licensed MIT | (c) 2020 Bennett Feely
  */
-
+const zText = () => {
 	// Default values
-z_default = {
+const z_default = {
 	depth: "1rem",
 	direction: "both",
 	event: "none",
@@ -21,7 +21,7 @@ z_default = {
 var zs = document.querySelectorAll("[data-z]");
 zs.forEach((z) => {
 	// Make uniform option keys
-	options = {
+	const options = {
 		depth: z.dataset.zDepth || z_default.depth,
 		direction: z.dataset.zDirection || z_default.direction,
 		event: z.dataset.zEvent || z_default.event,
@@ -52,7 +52,6 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
 	if (z_engaged !== "false") {
 		var depth_unit = depth.match(/[a-z]+/)[0];
 		var depth_numeral = parseFloat(depth.replace(depth_unit, ""));
-
 		var event_rotation_unit = eventRotation.match(/[a-z]+/)[0];
 		var event_rotation_numeral = parseFloat(
 			eventRotation.replace(event_rotation_unit, "")
@@ -229,3 +228,6 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
 	}
 }
 
+};
+
+export { zText };
