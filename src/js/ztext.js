@@ -3,9 +3,8 @@
  * https://bennettfeely.com/ztext
  * Licensed MIT | (c) 2020 Bennett Feely
  */
-const zText = () => {
-	// Default values
-const z_default = {
+
+const DEFAULTS = {
 	depth: "1rem",
 	direction: "both",
 	event: "none",
@@ -13,11 +12,37 @@ const z_default = {
 	eventDirection: "default",
 	fade: false,
 	layers: 10,
-	perspective: "500px",
-	z: true,
+	perspective: "500px"
 };
 
-// function zDraw(z, options) {
+const getElements = (selector = '[data-z]') => {
+  return document.querySelectorAll(selector);
+};
+
+const setElementsOptions = (elements, options) => {
+	elements.forEach((z) => {
+		zDraw(z, {
+			depth: z.dataset.zDepth || options.depth,
+			direction: z.dataset.zDirection || options.direction,
+			event: z.dataset.zEvent || options.event,
+			eventRotation: z.dataset.zEventrotation || options.eventRotation,
+			eventDirection: z.dataset.zEventdirection || options.eventDirection,
+			fade: z.dataset.zFade || options.fade,
+			layers: parseFloat(z.dataset.zLayers) || options.layers,
+			perspective: z.dataset.zPerspective || options.perspective
+		});
+	});
+}
+
+// JS constructor
+function Ztextify(selector, options) {
+	var zs = document.querySelectorAll(selector);
+
+	zs.forEach((z) => {
+		zDraw(z, options);
+	});
+}
+
 function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade, layers, perspective, transform }) {
 	var depth_unit = depth.match(/[a-z]+/)[0];
 	var depth_numeral = parseFloat(depth.replace(depth_unit, ""));
@@ -48,7 +73,7 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
 
 	zText.append(zLayers);
 
-	for (i = 0; i < layers; i++) {
+	for (let i = 0; i < layers; i++) {
 		let pct = i / layers;
 
 		// Create a layer
@@ -196,38 +221,10 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
 	}
 }
 
-// JS constructor
-function Ztextify(selector, options) {
-	var zs = document.querySelectorAll(selector);
+const zText = (options = DEFAULTS) => {
+	const zs = getElements();
 
-	zs.forEach((z) => {
-		zDraw(z, options);
-	});
-}
-
-// Get all elements with the [data-z] attribute
-var zs = document.querySelectorAll("[data-z]");
-zs.forEach((z) => {
-	// Make uniform option keys
-	const options = {
-		depth: z.dataset.zDepth || z_default.depth,
-		direction: z.dataset.zDirection || z_default.direction,
-		event: z.dataset.zEvent || z_default.event,
-		eventRotation: z.dataset.zEventrotation || z_default.eventRotation,
-		eventDirection: z.dataset.zEventdirection || z_default.eventDirection,
-		fade: z.dataset.zFade || z_default.fade,
-		layers: parseFloat(z.dataset.zLayers) || z_default.layers,
-		perspective: z.dataset.zPerspective || z_default.perspective,
-		zEngaged: z.dataset.z || z_default.z,
-	};
-
-	zDraw(z, options);
-});
-
-
-
-
-
+	setElementsOptions(zs, options);
 };
 
 export { zText };
