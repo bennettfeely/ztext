@@ -17,34 +17,6 @@ const z_default = {
 	z: true,
 };
 
-// Get all elements with the [data-z] attribute
-var zs = document.querySelectorAll("[data-z]");
-zs.forEach((z) => {
-	// Make uniform option keys
-	const options = {
-		depth: z.dataset.zDepth || z_default.depth,
-		direction: z.dataset.zDirection || z_default.direction,
-		event: z.dataset.zEvent || z_default.event,
-		eventRotation: z.dataset.zEventrotation || z_default.eventRotation,
-		eventDirection: z.dataset.zEventdirection || z_default.eventDirection,
-		fade: z.dataset.zFade || z_default.fade,
-		layers: parseFloat(z.dataset.zLayers) || z_default.layers,
-		perspective: z.dataset.zPerspective || z_default.perspective,
-		zEngaged: z.dataset.z || z_default.z,
-	};
-
-	zDraw(z, options);
-});
-
-// JS constructor
-function Ztextify(selector, options) {
-	var zs = document.querySelectorAll(selector);
-
-	zs.forEach((z) => {
-		zDraw(z, options);
-	});
-}
-
 // function zDraw(z, options) {
 function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade, layers, perspective, transform }) {
 	var z_engaged = options.zEngaged || z_default.zEngaged;
@@ -227,6 +199,36 @@ function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade
 		}
 	}
 }
+
+// Get all elements with the [data-z] attribute
+var zs = document.querySelectorAll("[data-z]");
+zs.forEach((z) => {
+	// Make uniform option keys
+	const options = {
+		depth: z.dataset.zDepth || z_default.depth,
+		direction: z.dataset.zDirection || z_default.direction,
+		event: z.dataset.zEvent || z_default.event,
+		eventRotation: z.dataset.zEventrotation || z_default.eventRotation,
+		eventDirection: z.dataset.zEventdirection || z_default.eventDirection,
+		fade: z.dataset.zFade || z_default.fade,
+		layers: parseFloat(z.dataset.zLayers) || z_default.layers,
+		perspective: z.dataset.zPerspective || z_default.perspective,
+		zEngaged: z.dataset.z || z_default.z,
+	};
+
+	zDraw(z, options);
+});
+
+// JS constructor
+function Ztextify(selector, options) {
+	var zs = document.querySelectorAll(selector);
+
+	zs.forEach((z) => {
+		zDraw(z, options);
+	});
+}
+
+
 
 };
 
