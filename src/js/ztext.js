@@ -45,28 +45,18 @@ function Ztextify(selector, options) {
 	});
 }
 
-function zDraw(z, options) {
+// function zDraw(z, options) {
+function zDraw(z, { depth, direction, event, eventRotation, eventDirection, fade, layers, perspective, transform }) {
 	var z_engaged = options.zEngaged || z_default.zEngaged;
 
 	if (z_engaged !== "false") {
-		var depth = options.depth || z_default.depth;
 		var depth_unit = depth.match(/[a-z]+/)[0];
 		var depth_numeral = parseFloat(depth.replace(depth_unit, ""));
 
-		var direction = options.direction || z_default.direction;
-
-		var event = options.event || z_default.event;
-		var event_rotation = options.eventRotation || z_default.eventRotation;
-		var event_rotation_unit = event_rotation.match(/[a-z]+/)[0];
+		var event_rotation_unit = eventRotation.match(/[a-z]+/)[0];
 		var event_rotation_numeral = parseFloat(
-			event_rotation.replace(event_rotation_unit, "")
+			eventRotation.replace(event_rotation_unit, "")
 		);
-		var event_direction = options.eventDirection || z_default.eventDirection;
-
-		var fade = options.fade || z_default.fade;
-		var layers = options.layers || z_default.layers;
-		var perspective = options.perspective || z_default.perspective;
-		var transform = options.transform || z_default.transform;
 
 		// Grab the text and replace it with a new structure
 		var text = z.innerHTML;
@@ -145,7 +135,7 @@ function zDraw(z, options) {
 
 		function tilt(x_pct, y_pct) {
 			// Switch neg/pos values if eventDirection is reversed
-			if (event_direction == "reverse") {
+			if (eventDirection == "reverse") {
 				var event_direction_adj = -1;
 			} else {
 				var event_direction_adj = 1;
